@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name="ios-arrow-back"></ion-icon>返回
+      </button>
+    </ion-buttons>
+
+    <ion-title style="text-align: center">
+      系统监控日志
+    </ion-title>
+
+    <ion-buttons right style="visibility: hidden">
+      <button ion-button icon-only>
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!--<ion-grid>
+    <ion-row>
+      <ion-col col-2 class="dateLabel">开始<br/>时间</ion-col>
+      <ion-col col-4 ><ion-datetime  displayFormat="YYYY/MM/DD" [(ngModel)]="startDate" cancelText="取消" doneText="确定" (ngModelChange)="changeDate($event)"></ion-datetime></ion-col>
+      <ion-col col-2 class="dateLabel">结束<br/>时间</ion-col>
+      <ion-col col-4><ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="endDate" cancelText="取消" doneText="确定" (ngModelChange)="changeDate($event)"></ion-datetime></ion-col>
+    </ion-row>
+  </ion-grid>-->
+  <div style="margin-top: 30%;font-size: 20px;color: #cccccc;text-align: center" *ngIf="!showList">暂无数据</div>
+  <ion-list no-lines *ngIf="showList">
+    <table *ngFor="let item of listData" class="tableListItem">
+      <tr>
+        <td class="label">监控类型:</td>
+        <td>{{item.monitor_type}}</td>
+      </tr>
+      <tr>
+        <td class="label">成功运行时间:</td>
+        <td>{{item.last_run_time}}</td>
+      </tr>
+      <tr>
+        <td class="label">最后运行是否错误:</td>
+        <td>{{item.last_run_error}}</td>
+      </tr>
+      <tr>
+        <td class="label">报警时间:</td>
+        <td>{{item.warn_time_line}}</td>
+      </tr>
+      <tr>
+        <td class="label">说明:</td>
+        <td>{{item.monitor_desc|defaultExceptionText}}</td>
+      </tr>
+    </table>
+  </ion-list>
+</ion-content>
